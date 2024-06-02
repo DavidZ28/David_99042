@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Encabezado con descripción y logo -->
+    <header class="container-fluid bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="text-center">
+                    <h1><strong>ZAPATERIA CALZADO LOKY</strong></h1>
+                    <img src="{% static 'imga/logo.png' %}" alt="Logo">
+                    <p class="lead mt-3">Transformando la forma en que compras tus zapatos.</p>
+                </div>
+                <div class="col-md-6 text-right">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center mb-4">Zapatos disponibles</h2>
+                <div class="row">
+                    {% for zapato in lista_zapatos %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <div class="text-center">
+                                    <img src="{{ MEDIA_URL }}{{ zapato.imagen }}" alt="{{ zapato.nombre }}" style="width: 50%; height: auto;">
+                                </div>
+                                
+                                
+
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ zapato.nombre }}</h5>
+                                    <p class="card-text">{{ zapato.descripcion }}</p>
+                                    <p class="card-text"><strong>Precio:</strong> {{ zapato.precio }}</p>
+                                    <p class="card-text"><strong>Stock:</strong> {{ zapato.stock }}</p>
+                                    <div class="te">
+                                        <a href="{% url 'zapato_detail' zapato.id %}" class="btn btn-primary">Ver Detalles</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Agroblock -->
+    <section class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="text-uppercase">Sobre zapato</h2>
+                <p class="lead">Calzado loky (que no te engañe su nombre) es una zapeteria que se encuntra en la ciudad de buenaventura que te daraa las mejores zapatos</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

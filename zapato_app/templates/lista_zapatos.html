@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Zapatos</h1>
+<div class="container">
+
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center mb-4">Zapatos disponibles</h2>
+                <div class="row">
+                    {% for zapato in lista_zapatos %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="text-center">
+                                <img src="../{{ MEDIA_URL }}{{ zapato.imagen }}" alt="{{ zapato.nombre }}"
+                                    style="width: 50%; height: auto;">
+                            </div>
+
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ zapato.nombre }}</h5>
+                                <p class="card-text">{{ zapato.descripcion }}</p>
+                                <p class="card-text"><strong>Precio:</strong> {{ zapato.precio }}</p>
+                                <p class="card-text"><strong>Stock:</strong> {{ zapato.stock }}</p>
+                                <div class="text-center">
+                                    <a href="{% url 'zapato_detail' zapato.id %}" class="btn btn-primary">Ver Detalles</a>
+                                    <button class="btn btn-danger"><a href="{% url 'eliminar_zapato' zapato.id %}" style="color: white;">Delete</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+{% endblock %}
